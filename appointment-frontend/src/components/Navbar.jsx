@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
-import { Menu, X, CalendarClock } from 'lucide-react';
+import { Menu, X, Calendar } from 'lucide-react';
 
 const Navbar = () => {
   const { user, logout, isAuthenticated } = useContext(AuthContext);
@@ -15,7 +15,7 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Services', path: '/services' }, // Assuming a services page exists or it scrolls to section
+    { name: 'Services', path: '/services' },
   ];
 
   if (isAuthenticated) {
@@ -29,110 +29,111 @@ const Navbar = () => {
   }
 
   return (
-    <div className="fixed top-6 left-0 w-full z-50 flex justify-center px-4 pointer-events-none fade-in">
-      <nav className="bg-white/80 backdrop-blur-lg shadow-xl shadow-blue-900/5 border border-gray-200/60 rounded-full pointer-events-auto transition-all duration-300">
-        <div className="px-4 py-3 sm:px-6">
-          <div className="flex items-center gap-4 sm:gap-8">
-            <Link to="/" className="flex items-center gap-2 group">
-              <div className="p-2 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-full text-white shadow-md group-hover:scale-105 transition-transform">
-                <CalendarClock className="h-5 w-5" />
-              </div>
-              <span className="font-extrabold text-xl tracking-tight text-gray-900 hidden lg:block">BookIt</span>
-            </Link>
-
-            {/* Desktop Menu - Tabs */}
-            <div className="hidden md:flex items-center bg-gray-50/80 p-1 rounded-full border border-gray-100">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.path}
-                  className="px-5 py-2 rounded-full text-sm font-semibold text-gray-600 hover:text-blue-600 hover:bg-white hover:shadow-sm transition-all text-center"
-                >
-                  {link.name}
-                </Link>
-              ))}
+    <nav className="fixed w-full top-0 pt-4 px-4 z-[100] transition-all duration-300 pointer-events-none">
+      <div className="max-w-6xl mx-auto backdrop-blur-3xl bg-[#ffffff08] border border-white/10 rounded-[2rem] shadow-2xl px-6 pointer-events-auto hover:bg-[#ffffff0d] transition-colors duration-500">
+        <div className="flex justify-between items-center py-4">
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-3 group">
+            <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-transform shadow-[0_0_15px_rgba(6,182,212,0.5)]">
+               <Calendar className="w-6 h-6 text-white" />
             </div>
+            <span className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-cyan-100 group-hover:to-cyan-400 transition-colors tracking-tight">
+              BookIt
+            </span>
+          </Link>
 
-            <div className="hidden md:flex items-center">
-              {isAuthenticated ? (
-                <button 
-                  onClick={handleLogout}
-                  className="px-5 py-2.5 text-sm font-bold text-red-600 hover:text-red-700 hover:bg-red-50 rounded-full transition-colors ml-2"
-                >
-                  Logout
-                </button>
-              ) : (
-                <div className="flex items-center gap-1 bg-gray-50/80 p-1 rounded-full border border-gray-100 ml-2">
-                  <Link to="/login" className="px-5 py-2 rounded-full text-sm font-semibold text-gray-600 hover:text-blue-600 hover:bg-white hover:shadow-sm transition-all">
-                    Log in
-                  </Link>
-                  <Link to="/register" className="px-5 py-2 rounded-full text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 shadow-md transition-all">
-                    Sign up
-                  </Link>
-                </div>
-              )}
-            </div>
-
-            {/* Mobile menu button */}
-            <div className="flex items-center md:hidden ml-auto">
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="p-2 text-gray-600 hover:bg-gray-100 rounded-full focus:outline-none transition-colors"
+          {/* Desktop Menu - Tabs */}
+          <div className="hidden md:flex items-center bg-slate-800/80 p-1 rounded-full border border-white/5">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.path}
+                className="px-5 py-2 rounded-full text-base font-semibold text-slate-300 hover:text-cyan-400 hover:bg-slate-700 hover:shadow-sm transition-all text-center"
               >
-                {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                {link.name}
+              </Link>
+            ))}
+          </div>
+
+          <div className="hidden md:flex items-center">
+            {isAuthenticated ? (
+              <button 
+                onClick={handleLogout}
+                className="px-5 py-2.5 text-base font-bold text-red-500 hover:text-red-400 hover:bg-red-500/10 rounded-full transition-colors ml-2"
+              >
+                Logout
               </button>
-            </div>
+            ) : (
+              <div className="flex items-center gap-1 bg-slate-800/80 p-1 rounded-full border border-white/5 ml-2">
+                <Link to="/login" className="px-5 py-2 rounded-full text-base font-semibold text-slate-300 hover:text-cyan-400 hover:bg-slate-700 hover:shadow-sm transition-all">
+                  Log in
+                </Link>
+                <Link to="/register" className="px-5 py-2 rounded-full text-base font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all">
+                  Sign up
+                </Link>
+              </div>
+            )}
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="flex items-center md:hidden ml-auto">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 text-slate-300 hover:bg-slate-800 rounded-full focus:outline-none transition-colors"
+            >
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
           </div>
         </div>
+      </div>
 
-        {/* Mobile Menu Dropdown */}
-        {isOpen && (
-          <div className="absolute top-[calc(100%+10px)] left-0 w-full min-w-[250px] bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden fade-in">
-            <div className="p-4 space-y-1">
-              {navLinks.map((link) => (
+      {/* Mobile Menu Dropdown */}
+      {isOpen && (
+        <div className="absolute top-[calc(100%+10px)] left-0 w-full min-w-[250px] bg-slate-900 rounded-3xl shadow-2xl border border-white/10 overflow-hidden fade-in">
+          <div className="p-4 space-y-1">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.path}
+                onClick={() => setIsOpen(false)}
+                className="block px-4 py-3 rounded-2xl text-base font-semibold text-slate-300 hover:text-cyan-400 hover:bg-slate-800 text-center"
+              >
+                {link.name}
+              </Link>
+            ))}
+            <div className="h-px bg-white/10 my-2"></div>
+            {isAuthenticated ? (
+              <button
+                onClick={() => {
+                  handleLogout();
+                  setIsOpen(false);
+                }}
+                className="block w-full px-4 py-3 rounded-2xl text-base font-bold text-red-500 hover:bg-red-500/10 text-center"
+              >
+                Logout
+              </button>
+            ) : (
+              <div className="grid grid-cols-2 gap-2 mt-2">
                 <Link
-                  key={link.name}
-                  to={link.path}
+                  to="/login"
                   onClick={() => setIsOpen(false)}
-                  className="block px-4 py-3 rounded-2xl text-base font-semibold text-gray-700 hover:text-blue-600 hover:bg-blue-50 text-center"
+                  className="block px-4 py-3 rounded-2xl text-base font-semibold text-slate-300 bg-slate-800 hover:bg-slate-700 text-center"
                 >
-                  {link.name}
+                  Log in
                 </Link>
-              ))}
-              <div className="h-px bg-gray-100 my-2"></div>
-              {isAuthenticated ? (
-                <button
-                  onClick={() => {
-                    handleLogout();
-                    setIsOpen(false);
-                  }}
-                  className="block w-full px-4 py-3 rounded-2xl text-base font-bold text-red-600 hover:bg-red-50 text-center"
+                <Link
+                  to="/register"
+                  onClick={() => setIsOpen(false)}
+                  className="block px-4 py-3 rounded-2xl text-base font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-center shadow-[0_0_15px_rgba(6,182,212,0.3)]"
                 >
-                  Logout
-                </button>
-              ) : (
-                <div className="grid grid-cols-2 gap-2 mt-2">
-                  <Link
-                    to="/login"
-                    onClick={() => setIsOpen(false)}
-                    className="block px-4 py-3 rounded-2xl text-base font-semibold text-gray-700 bg-gray-50 hover:bg-gray-100 text-center"
-                  >
-                    Log in
-                  </Link>
-                  <Link
-                    to="/register"
-                    onClick={() => setIsOpen(false)}
-                    className="block px-4 py-3 rounded-2xl text-base font-semibold text-white bg-blue-600 hover:bg-blue-700 text-center shadow-md"
-                  >
-                    Sign up
-                  </Link>
-                </div>
-              )}
-            </div>
+                  Sign up
+                </Link>
+              </div>
+            )}
           </div>
-        )}
-      </nav>
-    </div>
+        </div>
+      )}
+    </nav>
   );
 };
 

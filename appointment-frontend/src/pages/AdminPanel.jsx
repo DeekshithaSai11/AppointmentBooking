@@ -128,7 +128,7 @@ const AdminPanel = () => {
                 placeholder={`Search ${activeTab}...`}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="input-field pl-10 bg-white"
+                className="input-field pl-10 bg-slate-800/80 backdrop-blur-md border border-white/10"
               />
             </div>
           </div>

@@ -4,6 +4,7 @@ import { appointmentService } from '../services/appointmentService';
 import AppointmentCard from '../components/AppointmentCard';
 import { Link } from 'react-router-dom';
 import { CalendarClock, PlusCircle, AlertCircle } from 'lucide-react';
+import SpinWheel from '../components/SpinWheel';
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
@@ -37,6 +38,7 @@ const Dashboard = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-6 text-center flex flex-col items-center min-h-screen pt-16 pb-20">
+      <SpinWheel />
       <div className="w-full text-left space-y-10">
         
         {/* Header Section */}
@@ -44,10 +46,12 @@ const Dashboard = () => {
           <div className="absolute right-0 top-0 w-64 h-64 bg-indigo-500/20 rounded-full translate-x-1/2 -translate-y-1/2 blur-3xl opacity-60 pointer-events-none"></div>
           
           <div className="relative z-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 font-semibold text-xs uppercase tracking-wider mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-fuchsia-500/20 to-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-bold text-xs uppercase tracking-widest mb-4 shadow-[0_0_15px_rgba(6,182,212,0.2)]">
               Dashboard Overview
             </div>
-            <h1 className="text-4xl font-extrabold text-white mb-3 tracking-tight">Welcome back, {user?.name || 'User'}!</h1>
+            <h1 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-fuchsia-500 mb-4 tracking-tighter drop-shadow-[0_0_20px_rgba(6,182,212,0.3)]">
+              Welcome back, {user?.name || 'User'}!
+            </h1>
             <p className="text-lg text-slate-400 font-medium">Manage and track all your upcoming service appointments.</p>
           </div>
           <div className="mt-8 md:mt-0 relative z-10">

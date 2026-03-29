@@ -26,13 +26,13 @@ const AppointmentCard = ({ appointment, onCancel, isAdmin }) => {
   };
 
   return (
-    <div className="bg-white border border-gray-100 rounded-xl shadow-sm p-5 hover:shadow-md transition-shadow relative">
+    <div className="bg-slate-800/80 backdrop-blur-md border border-white/10 border border-white/20 rounded-xl shadow-sm p-5 hover:shadow-md transition-shadow relative">
       <div className="flex justify-between items-start mb-4">
         <div>
-          <h4 className="font-bold text-gray-900 text-lg">
+          <h4 className="font-bold text-white font-bold text-lg">
             {typeof place === 'string' ? place : (place?.name || 'Service Location')}
           </h4>
-          <p className="text-sm text-gray-500 flex items-center gap-1 mt-1">
+          <p className="text-sm text-slate-400 flex items-center gap-1 mt-1">
             <MapPin className="w-3.5 h-3.5" />
             {typeof place === 'object' && place?.location ? place.location : 'Location details'}
           </p>
@@ -42,21 +42,21 @@ const AppointmentCard = ({ appointment, onCancel, isAdmin }) => {
         </div>
       </div>
       
-      <div className="bg-gray-50 rounded-lg p-3 grid grid-cols-2 gap-3 mb-4 border border-gray-100">
-        <div className="flex items-center gap-2 text-sm text-gray-700">
+      <div className="bg-transparent rounded-lg p-3 grid grid-cols-2 gap-3 mb-4 border border-white/20">
+        <div className="flex items-center gap-2 text-sm text-slate-200">
           <Calendar className="w-4 h-4 text-blue-500" />
           <span className="font-medium">{formattedDate}</span>
         </div>
-        <div className="flex items-center gap-2 text-sm text-gray-700">
+        <div className="flex items-center gap-2 text-sm text-slate-200">
           <Clock className="w-4 h-4 text-blue-500" />
           <span className="font-medium">{slot}</span>
         </div>
       </div>
 
       {isAdmin && (user || appointment.userName) && (
-        <div className="mb-4 pt-3 border-t border-gray-100">
-          <p className="text-sm text-gray-600">
-            <span className="font-semibold text-gray-800">User:</span> {user?.name || appointment.userName} {user?.email && `(${user.email})`}
+        <div className="mb-4 pt-3 border-t border-white/20">
+          <p className="text-sm text-slate-300">
+            <span className="font-semibold text-slate-100 font-semibold">User:</span> {user?.name || appointment.userName} {user?.email && `(${user.email})`}
           </p>
         </div>
       )}

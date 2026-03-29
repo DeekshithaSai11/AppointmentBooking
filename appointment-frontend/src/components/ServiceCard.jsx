@@ -11,7 +11,7 @@ const ServiceCard = ({ id, name, location, serviceType, image }) => {
 
   return (
     <div className="card group flex flex-col h-full fade-in cursor-pointer border-transparent hover:border-blue-100">
-      <div className="relative h-60 overflow-hidden bg-gray-100">
+      <div className="relative h-60 overflow-hidden bg-transparent">
         <img 
           src={image} 
           alt={name} 
@@ -20,23 +20,23 @@ const ServiceCard = ({ id, name, location, serviceType, image }) => {
             e.target.src = 'https://via.placeholder.com/400x300?text=Service';
           }}
         />
-        <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-blue-800 shadow-sm flex items-center gap-1">
+        <div className="absolute top-4 right-4 bg-slate-800/80 backdrop-blur-md border border-white/10/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-blue-800 shadow-sm flex items-center gap-1">
           <Tag className="w-3 h-3" />
           {serviceType}
         </div>
       </div>
       
-      <div className="p-8 flex-grow flex flex-col bg-white">
-        <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors tracking-tight">
+      <div className="p-8 flex-grow flex flex-col bg-slate-800/80 backdrop-blur-md border border-white/10">
+        <h3 className="text-2xl font-bold text-white font-bold mb-3 group-hover:text-blue-600 transition-colors tracking-tight">
           {name}
         </h3>
         
-        <div className="flex items-start gap-3 text-gray-500 mb-4 text-sm font-medium">
+        <div className="flex items-start gap-3 text-slate-400 mb-4 text-sm font-medium">
           <MapPin className="w-5 h-5 mt-0.5 flex-shrink-0 text-blue-500/70" />
           <span className="leading-relaxed">{location}</span>
         </div>
         
-        <div className="flex items-start gap-3 text-gray-500 mb-8 text-sm font-medium">
+        <div className="flex items-start gap-3 text-slate-400 mb-8 text-sm font-medium">
           <Clock className="w-5 h-5 mt-0.5 flex-shrink-0 text-blue-500/70" />
           <span className="leading-relaxed">Available Mon-Sat, 9AM-6PM</span>
         </div>
