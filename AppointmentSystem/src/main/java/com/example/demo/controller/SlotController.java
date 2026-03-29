@@ -19,5 +19,9 @@ public class SlotController {
     public List<TimeSlot> getSlots() {
         return service.getSlots();
     }
+    @PostMapping
+    public TimeSlot addSlot(@RequestBody TimeSlot slot) {
+        return service.save(slot);
+    }
 
 }

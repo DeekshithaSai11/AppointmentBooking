@@ -16,5 +16,8 @@ public class SlotService {
     public List<TimeSlot> getSlots() {
         return repository.findAll();
     }
+    public TimeSlot save(TimeSlot slot) {
+        return repository.save(slot);
+    }
 
 }
